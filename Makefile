@@ -1,22 +1,18 @@
 # Nice Makefiles tutorial:
 # https://www.youtube.com/watch?v=_r7i5X0rXJk
 
-all: readstrings playgl playstrtok scopenread udsock_srv
+# https://www.gnu.org/software/make/manual/html_node/Pattern-Examples.html
+# https://www.gnu.org/software/make/manual/html_node/Foreach-Function.html
+# https://www.gnu.org/software/make/manual/html_node/Wildcard-Function.html
 
-readstrings: readstrings.c
-	gcc readstrings.c -o build/readstrings
+sources := $(wildcard *.c)
+program_names := $(patsubst %.c, %, ${sources})
 
-playgl: playgl.c
-	gcc playgl.c -o build/playgl
+all: ${program_names}
 
-playstrtok: playstrtok.c
-	gcc playstrtok.c -o build/playstrtok
-
-scopenread: scopenread.c
-	gcc scopenread.c -o build/scopenread
-
-udsock_srv: udsock_srv.c
-	gcc udsock_srv.c -o build/udsock_srv
+# Make executable from every C source file
+% : %.c
+	gcc $< -o build/$@
 
 clean:
 	rm build/*
