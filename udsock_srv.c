@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <string.h>
 
-struct sockaddr_un init_address(const char* path) {
+struct sockaddr_un init_address(const char *path) {
 
     struct sockaddr_un addr;
-    memset(&addr, sizeof(struct sockaddr_un), 0);
+    memset(&addr, 0, sizeof(struct sockaddr_un));
 
     addr.sun_family = AF_UNIX;
     
