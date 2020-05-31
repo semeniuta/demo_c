@@ -20,7 +20,10 @@ int main() {
 
     struct sockaddr_un addr = init_address("/tmp/myscoket");
 
-    printf("Socket address: %s\n", addr.sun_path);
+    printf("Socket address (size=%ld): %s\n", strlen(addr.sun_path), addr.sun_path);
 
-    printf("sun_len: %d\nlength of sun_path: %d\n", addr.sun_len, (int)sizeof(addr.sun_path));
+    printf("sun_len: %d\n", addr.sun_len);
+    printf("size of sun_path: %ld\n", sizeof(addr.sun_path));
+
+    return 0;
 }
